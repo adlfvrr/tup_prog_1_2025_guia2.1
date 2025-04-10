@@ -1,0 +1,135 @@
+//EJ1//
+Proceso ej1
+	Definir nom,pat Como Caracter;
+	Definir cont,pefec,cod1,cod2,cod3,cod4,cod5,ejes,inf como reales;
+	Definir subtotal1,subtotal2,total,arl como reales;
+	Definir v1,v2,v3,v4,v5,pdto Como Logico;
+	//
+	Escribir "Ingrese nombre y patente: ";
+	Leer nom,pat;
+	Escribir "Ingrese monto por L de nafta: $";
+	Leer arl;
+	Escribir "Ingrese cantidad de infracciones cometidas: ";
+	Leer inf;
+	Escribir "Ingrese ejes del vehiculo: ";
+	Leer ejes;
+	Escribir "Se pago en efectivo? (1/0)";
+	Leer pefec;
+	cont = 0;
+	Si cont <> inf Entonces
+		Escribir "Cometio codigo de infraccion 1? (1/0)";
+		Leer cod1;
+		Si cod1 == 1 Entonces
+			cont = cont + 1;
+			cod1 = arl * 25;
+			v1 = Verdadero;
+			subtotal1 = subtotal1 + cod1;
+		FinSi
+	FinSi
+	Si cont <> inf Entonces
+		Escribir "Cometio codigo de infraccion 2? (1/0)";
+		Leer cod2;
+		Si cod2 == 1 Entonces
+			cont = cont + 1;
+			cod2 = arl * 30;
+			v2 = Verdadero;
+			subtotal1 = subtotal1 + cod2;
+		FinSi
+	FinSi
+	Si cont <> inf Entonces
+		Escribir "Cometio codigo de infraccion 3? (1/0)";
+		Leer cod3;
+		Si cod3 == 1 Entonces
+			cont = cont + 1;
+			cod3 = arl * 100;
+			v3 = Verdadero;
+			subtotal1 = subtotal1 + cod3;
+		FinSi
+	FinSi
+	Si cont <> inf Entonces
+		Escribir "Cometio codigo de infraccion 4? (1/0)";
+		Leer cod4;
+		Si cod4 == 1 Entonces
+			cont = cont + 1;
+			cod4 = arl * 85;
+			v4 = Verdadero;
+			subtotal1 = subtotal1 + cod4;
+		FinSi
+	FinSi
+	Si cont <> inf Entonces
+		Escribir "Cometio codigo de infraccion 5? (1/0)";
+		Leer cod5;
+		Si cod5 == 1 Entonces
+			cont = cont + 1;
+			cod5 = arl * 1500;
+			v5 = Verdadero;
+			subtotal1 = subtotal1 + cod5;
+		FinSi
+	FinSi
+	//
+	Si ejes > 1 Entonces
+		Si ejes >= 3 Entonces
+			subtotal2 = subtotal1 * 2;
+		SiNo
+			subtotal2 = subtotal1 * 1.5;
+		FinSi
+	SiNo
+		subtotal2 = subtotal1;
+	FinSi
+	//
+	Si pefec == 1 Entonces
+		pdto = Verdadero;
+		total = subtotal2 - (subtotal2*0.5);
+	SiNo
+		total = subtotal2;
+	FinSi
+	//RECIBO//
+	Escribir "Patente: ",pat, " Nombre: ",nom;
+	Escribir "Tipo de vehiculo: ", ejes, " ejes - Base: 1L / ",arl,"$ar";
+	//INFRACCIONES
+	Escribir "Detalle:";
+	Si v1 = Verdadero Entonces
+		Escribir "-Sin luces, ley 25. Monto: ",cod1,"$ar";
+	FinSi
+	Si v2 = Verdadero Entonces
+		Escribir "-Falta de matafuego, ley 2. Monto: ",cod2,"$ar";
+	FinSi
+	Si v3 = Verdadero Entonces
+		Escribir "-Sobrevelocidad. Monto: ",cod3,"$ar";
+	FinSi
+	Si v4 = Verdadero Y ejes >= 2 Entonces
+		Escribir "-Falta de cinturon de seguridad. Monto: ",cod4,"$ar";
+	SiNo
+		Si v4 = Verdadero Y ejes = 1 Entonces
+			Escribir "-Falta de casco. Monto: ",cod4,"$ar";
+		FinSi
+	FinSi
+	Si v5 = Verdadero Entonces
+		Escribir "-Falta de respeto a la autoridad. Monto: ",cod5,"$ar";
+	FinSi
+	Escribir "Subtotal: ",subtotal1,"$ar";
+	//TIPO DE VEHICULO
+	Si ejes = 1 Entonces
+		Escribir "Por tipo de vehiculo (0%)";
+		Escribir "Subtotal: ",subtotal2,"$ar";
+	FinSi
+	Si ejes = 2 Entonces
+		Escribir "Por tipo de vehiculo (50%)";
+		Escribir "Subtotal: ",subtotal2,"$ar";
+		Escribir "Monto sumado: ",(subtotal2*0.5),"$ar";
+	FinSi
+	Si ejes >=3 Entonces
+		Escribir "Por tipo de vehiculo (200%)";
+		Escribir "Subtotal: ",subtotal2,"$ar";
+		Escribir "Monto sumado: ",subtotal1,"$ar";
+	FinSi
+	// PAGO EN EFECTIVO
+	Si pdto = Verdadero Entonces
+		Escribir "Pago en efectivo (-50%)";
+		Escribir "Monto descontado: ",(subtotal2*0.5),"$ar";
+		Escribir "Total: ",total,"$ar";
+	SiNo
+		Escribir "Sin pago en efectivo (0%)";
+		Escribir "Total: ",total,"$ar";
+	FinSi
+FinProceso
