@@ -116,7 +116,7 @@ Proceso ej1
 	Si ejes = 2 Entonces
 		Escribir "Por tipo de vehiculo (50%)";
 		Escribir "Subtotal: ",subtotal2,"$ar";
-		Escribir "Monto sumado: ",(subtotal2*0.5),"$ar";
+		Escribir "Monto sumado: ",(subtotal1*0.5),"$ar";
 	FinSi
 	Si ejes >=3 Entonces
 		Escribir "Por tipo de vehiculo (200%)";
