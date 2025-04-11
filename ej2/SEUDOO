@@ -1,0 +1,137 @@
+Proceso ej2
+	Definir ejes, h, min Como Entero;
+	Definir simple, omni, tarj Como Entero;
+	Definir kg, valor1, valor2, valor3, valorcarga, valordto Como Real;
+	Definir tarjv, simplev, omniv Como Logico;
+	Escribir 'Ingrese ejes: ';
+	Leer ejes;
+	Escribir 'Es ruedas simples o camion/omnibus? (1/2)';
+	Leer simple;
+	Si simple==1 Entonces
+		simplev <- Verdadero;
+	SiNo
+		simplev <- falso;
+		Escribir 'Es transporte de pasajeros? (1/0)';
+		Leer omni;
+		Si omni==1 Entonces
+			omniv <- Verdadero;
+		SiNo
+			omniv <- falso;
+			Escribir 'Ingrese kilos de carga: ';
+			Leer kg;
+		FinSi
+	FinSi
+	Escribir 'Ingrese hora (horas y minutos): ';
+	Leer h, min;
+	Escribir 'Posee tarjeta de pase? (1/0)';
+	Leer tarj;
+	Si tarj==1 Entonces
+		tarjv <- Verdadero;
+	SiNo
+		tarjv <- falso;
+	FinSi
+	// CATEGORIAS                 //
+	Si ejes==1 O ejes==2 Y simplev==Verdadero Entonces
+		valor1 <- valor1+90;
+		Escribir 'Monto por categoria: ', valor1, '$';
+	SiNo
+		Si ejes>2 Y ejes<=4 Y simplev==Verdadero Entonces
+			valor1 <- valor1+160;
+			Escribir 'Monto por categoria: ', valor1, '$';
+		SiNo
+			Si simplev==Verdadero Entonces
+				Escribir 'No existe ese tipo de vehiculo';
+			FinSi
+		FinSi
+	FinSi
+	Si ejes==2 Y simplev==falso Entonces
+		valor1 <- valor1+300;
+		Escribir 'Monto por categoria: ', valor1, '$';
+	SiNo
+		Si ejes>=3 Y simplev==falso Entonces
+			valor1 <- valor1+400;
+			Escribir 'Monto por categoria: ', valor1, '$';
+		FinSi
+	FinSi
+	// RECARGOS                    //
+	valor2 <- valor1;
+	// PRIMER RECARGO
+	Si h>=1 Y h<6 Y simplev=Verdadero Entonces
+		valor2 <- valor2-(valor1*0.05);
+		Escribir 'Monto por horario: ', valor2, '$';
+	SiNo
+		Si h=6 Y min<=30 Y simplev=Verdadero Entonces
+			valor2 <- valor2-(valor1*0.05);
+			Escribir 'Monto por horario: ', valor2, '$';
+		FinSi
+	FinSi
+	Si h>=1 Y h<6 Y simplev=falso Y omniv=falso Entonces
+		valor2 <- valor1*1.1;
+		Escribir 'Monto por horario: ', valor2, '$';
+	SiNo
+		Si h=6 Y min<=30 Y simplev=falso Y omniv=falso Entonces
+			valor2 <- valor1*1.1;
+			Escribir 'Monto por horario: ', valor2, '$';
+		FinSi
+	FinSi
+	// SEGUNDO RECARGO
+	Si h>=13 Y h<19 Entonces
+		valor2 <- valor2-(valor1*0.15);
+		Escribir 'Monto por horario: ', valor2, '$';
+	SiNo
+		Si h=19 Y min=0 Entonces
+			valor2 <- valor2-(valor1*0.15);
+			Escribir 'Monto por horario: ', valor2, '$';
+		FinSi
+	FinSi
+	// TERCER RECARGO
+	Si (h=22 O h=23) Y simplev=Verdadero Entonces
+		valor2 <- valor2*1.1;
+		Escribir 'Monto por horario: ', valor2, '$';
+	SiNo
+		Si h=0 Y min=0 Y simplev=Verdadero Entonces
+			valor2 <- valor2*1.1;
+			Escribir 'Monto por horario: ', valor2, '$';
+		FinSi
+	FinSi
+	Si (h=22 O h=23) Y simplev=falso Y omniv=falso Entonces
+		valor2 <- valor2-(valor1*0.1);
+		Escribir 'Monto por horario: ', valor2, '$';
+	SiNo
+		Si h=0 Y min=0 Y simplev Y omniv=falso=falso Entonces
+			valor2 <- valor2-(valor1*0.1);
+			Escribir 'Monto por horario: ', valor2, '$';
+		FinSi
+	FinSi
+	// CASO OMNIBUS
+	Si (h=22 O h=23) Y omniv=Verdadero Entonces
+		valor2 <- valor2-(valor1*0.25);
+		Escribir 'Monto por horario: ', valor2, '$';
+	SiNo
+		Si h>=0 Y h<6 Y omniv==Verdadero Entonces
+			valor2 <- valor2-(valor1*0.25);
+			Escribir 'Monto por horario: ', valor2, '$';
+		SiNo
+			Si h=6 Y min=0 Y omniv=Verdadero Entonces
+				valor2 <- valor2-(valor1*0.25);
+				Escribir 'Monto por horario: ', valor2, '$';
+			FinSi
+		FinSi
+	FinSi
+	// SUBTOTAL
+	valor3 <- valor2;
+	Escribir 'El subtotal es: ', valor3, '$';
+	// CASO CARGA
+	Si simplev=falso Y omniv=falso Entonces
+		valorcarga <- kg*0.07;
+		Escribir 'El monto por carga es: ', valorcarga, '$';
+		valor3 <- valor2+valorcarga;
+	FinSi
+	// CASO TARJETA PREPAGA
+	Si tarjv=Verdadero Entonces
+		valordto <- valor3*0.15;
+		Escribir 'El valor descontado es: ', valordto, '$';
+		valor3 <- valor3-(valor3*0.15);
+	FinSi
+	Escribir 'El total a pagar es: ', valor3, '$';
+FinProceso
