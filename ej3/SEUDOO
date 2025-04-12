@@ -1,0 +1,309 @@
+Proceso ej3
+	Definir cont,cantp,e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,pas,ind,menores,adultos Como Entero;
+	Definir pasv,indv Como Logico;
+	Definir precio,precio1,precio2,precio3,totalpas,totalind Como Reales;
+	precio = 1500;
+	cont = 0;
+	
+	Escribir "Posee pasaporte? (1/0) ";
+	Leer pas;
+	Si pas == 1 Entonces
+		pasv = Verdadero;
+		Escribir "Ingrese cantidad del grupo: ";
+		Leer cantp;
+		Si cantp <4 o cantp>10 Entonces
+			Escribir "El pasaporte requiere un minimo de 4 personas y un maximo de 10. Se continuara con monto sin beneficio.";
+			pasv = Falso;
+			indv = Verdadero;
+		FinSi
+	SiNo
+		indv = Verdadero;
+		Escribir "Se continuara con monto individual.";
+		Escribir "Ingrese cantidad del grupo: ";
+		Leer cantp;
+	FinSi
+	//EDADES
+	Si cont <> cantp Entonces
+		Escribir "Ingrese edad 1: ";
+		Leer e1;
+		cont = cont +1;
+	FinSi
+	Si cont <> cantp Entonces
+		Escribir "Ingrese edad 2: ";
+		Leer e2;
+		cont = cont +1;
+	FinSi
+	Si cont <> cantp Entonces
+		Escribir "Ingrese edad 3: ";
+		Leer e3;
+		cont = cont +1;
+	FinSi
+	Si cont <> cantp Entonces
+		Escribir "Ingrese edad 4: ";
+		Leer e4;
+		cont = cont +1;
+	FinSi
+	Si cont <> cantp Entonces
+		Escribir "Ingrese edad 5: ";
+		Leer e5;
+		cont = cont +1;
+	FinSi
+	Si cont <> cantp Entonces
+		Escribir "Ingrese edad 6: ";
+		Leer e6;
+		cont = cont +1;
+	FinSi
+	Si cont <> cantp Entonces
+		Escribir "Ingrese edad 7: ";
+		Leer e7;
+		cont = cont +1;
+	FinSi
+	Si cont <> cantp Entonces
+		Escribir "Ingrese edad 8: ";
+		Leer e8;
+		cont = cont +1;
+	FinSi
+	Si cont <> cantp Entonces
+		Escribir "Ingrese edad 9: ";
+		Leer e9;
+		cont = cont +1;
+	FinSi
+	Si cont <> cantp Entonces
+		Escribir "Ingrese edad 10: ";
+		Leer e10;
+		cont = cont +1;
+	FinSi
+	//
+	//CALCULO 5 MENORES, UN MAYOR
+	menores <- 0;
+	adultos <- 0;
+	
+	Si e1 < 16 Entonces
+		menores <- menores + 1;
+	SiNo
+		Si e1 >= 21 Entonces
+			adultos <- adultos + 1;
+		FinSi;
+	FinSi;
+	
+	Si e2 < 16 Entonces
+		menores <- menores + 1;
+	SiNo
+		Si e2 >= 21 Entonces
+			adultos <- adultos + 1;
+		FinSi;
+	FinSi;
+	
+	Si e3 < 16 Entonces
+		menores <- menores + 1;
+	SiNo
+		Si e3 >= 21 Entonces
+			adultos <- adultos + 1;
+		FinSi;
+	FinSi;
+	
+	Si e4 < 16 Entonces
+		menores <- menores + 1;
+	SiNo
+		Si e4 >= 21 Entonces
+			adultos <- adultos + 1;
+		FinSi;
+	FinSi;
+	
+	Si e5 < 16 Entonces
+		menores <- menores + 1;
+	SiNo
+		Si e5 >= 21 Entonces
+			adultos <- adultos + 1;
+		FinSi;
+	FinSi;
+	
+	Si e6 < 16 Entonces
+		menores <- menores + 1;
+	SiNo
+		Si e6 >= 21 Entonces
+			adultos <- adultos + 1;
+		FinSi;
+	FinSi;
+	
+	Si e7 < 16 Entonces
+		menores <- menores + 1;
+	SiNo
+		Si e7 >= 21 Entonces
+			adultos <- adultos + 1;
+		FinSi;
+	FinSi;
+	
+	Si e8 < 16 Entonces
+		menores <- menores + 1;
+	SiNo
+		Si e8 >= 21 Entonces
+			adultos <- adultos + 1;
+		FinSi;
+	FinSi;
+	
+	Si e9 < 16 Entonces
+		menores <- menores + 1;
+	SiNo
+		Si e9 >= 21 Entonces
+			adultos <- adultos + 1;
+		FinSi;
+	FinSi;
+	
+	Si e10 < 16 Entonces
+		menores <- menores + 1;
+	SiNo
+		Si e10 >= 21 Entonces
+			adultos <- adultos + 1;
+		FinSi;
+	FinSi;
+	
+	Si adultos >= trunc(menores / 5) y pasv = Verdadero Entonces
+		precio1 <- precio * cantp;
+		precio2 <- precio1 * 0.85;
+	SiNo
+		Escribir "Debe haber un adulto responsable por cada 5 menores.";
+		indv <- Falso;
+		pasv <- Falso;
+	FinSi;
+
+	//CALCULO GRUPO MAYORES
+	Si e1 >= 16 Y e2 >= 16 Y e3 >= 16 Y e4 >= 16 Y e5 >= 16 Y e6 >= 16 Y e7 >= 16 Y e8 >=16 Y e9>=16 Y e10>=16 Y pasv=Verdadero Entonces
+		precio1 = precio * cantp;
+		precio2 = precio1 - (precio1*0.15);
+	SiNo
+		Si e1 >= 16 Y e2 >= 16 Y e3 >= 16 Y e4 >= 16 Y e5 >= 16 Y e6 >= 16 Y e7 >= 16 Y e8 >=16 Y e9>=16 Y e10>=16 Y indv = Verdadero Entonces
+			precio2 = precio * cantp;
+		FinSi
+	FinSi
+	// Calculo menores entre 0 y 3 
+	Si e1 >=0 y e1 <=3 y pasv =Verdadero Entonces
+		precio2 = precio*1.1;
+	SiNo
+		Si e1>=4 y e1 <=10 y pasv =Verdadero Entonces
+			precio2 = precio*0.5;
+		SiNo
+			Si e1 >=11 y e1 <=15 y pasv =Verdadero Entonces
+				precio2 = precio*0.8;
+			FinSi
+		FinSi
+	FinSi
+	Si e2 >=0 y e2 <=3 y pasv =Verdadero Entonces
+		precio2 = precio*1.1;
+	SiNo
+		Si e2>=4 y e2 <=10 y pasv =Verdadero Entonces
+			precio2 = precio*0.5;
+		SiNo
+			Si e2 >=11 y e2 <=15 y pasv =Verdadero Entonces
+				precio2 = precio*0.8;
+			FinSi
+		FinSi
+	FinSi
+	Si e3 >=0 y e3 <=3 y pasv =Verdadero Entonces
+		precio2 = precio*1.1;
+	SiNo
+		Si e3>=4 y e3 <=10 y pasv =Verdadero Entonces
+			precio2 = precio*0.5;
+		SiNo
+			Si e3 >=11 y e3 <=15 y pasv =Verdadero Entonces
+				precio2 = precio*0.8;
+			FinSi
+		FinSi
+	FinSi
+	Si e4 >=0 y e4 <=3 y pasv =Verdadero Entonces
+		precio1 = precio*1.1;
+	SiNo
+		Si e4>=4 y e4 <=10 y pasv =Verdadero Entonces
+			precio2 = precio*0.5;
+		SiNo
+			Si e4 >=11 y e4 <=15 y pasv =Verdadero Entonces
+				precio2 = precio*0.8;
+			FinSi
+		FinSi
+	FinSi
+	Si e5 >=0 y e5 <=3 y pasv =Verdadero Entonces
+		precio2 = precio*1.1;
+	SiNo
+		Si e5>=4 y e5 <=10 y pasv =Verdadero Entonces
+			precio2 = precio*0.5;
+		SiNo
+			Si e5 >=11 y e5 <=15 y pasv =Verdadero Entonces
+				precio2 = precio*0.8;
+			FinSi
+		FinSi
+	FinSi
+	Si e6 >=0 y e6 <=3 y pasv =Verdadero Entonces
+		precio2 = precio*1.1;
+	SiNo
+		Si e6>=4 y e6 <=10 y pasv =Verdadero Entonces
+			precio2= precio*0.5;
+		SiNo
+			Si e6 >=11 y e6 <=15 y pasv =Verdadero Entonces
+				precio2 = precio*0.8;
+			FinSi
+		FinSi
+	FinSi
+	Si e7 >=0 y e7 <=3 y pasv =Verdadero Entonces
+		precio2 = precio*1.1;
+	SiNo
+		Si e7>=4 y e7 <=10 y pasv =Verdadero Entonces
+			precio2 = precio*0.5;
+		SiNo
+			Si e7 >=11 y e7 <=15 y pasv =Verdadero Entonces
+				precio2 = precio*0.8;
+			FinSi
+		FinSi
+	FinSi
+	Si e8 >=0 y e8 <=3 y pasv =Verdadero Entonces
+		precio2 = precio*1.1;
+	SiNo
+		Si e8>=4 y e8 <=10 y pasv =Verdadero Entonces
+			precio2 = precio*0.5;
+		SiNo
+			Si e8 >=11 y e8 <=15 y pasv =Verdadero Entonces
+				precio2 = precio*0.8;
+			FinSi
+		FinSi
+	FinSi
+	Si e9 >=0 y e9 <=3 y pasv =Verdadero Entonces
+		precio2 = precio*1.1;
+	SiNo
+		Si e9>=4 y e9 <=10 y pasv =Verdadero Entonces
+			precio2 = precio*0.5;
+		SiNo
+			Si e9 >=11 y e9 <=15 y pasv =Verdadero Entonces
+				precio2 = precio*0.8;
+			FinSi
+		FinSi
+	FinSi
+	Si e10 >=0 y e10 <=3 y pasv =Verdadero Entonces
+		precio2 = precio*1.1;
+	SiNo
+		Si e10>=4 y e10 <=10 y pasv =Verdadero Entonces
+			precio2 = precio*0.5;
+		SiNo
+			Si e10 >=11 y e10 <=15 y pasv =Verdadero Entonces
+				precio2 = precio*0.8;
+			FinSi
+		FinSi
+	FinSi
+	//
+	//precio normal//
+	Si indv = Verdadero Entonces
+		precio1 = precio *cantp;
+	FinSi
+	//PRINT
+	Si pasv = Verdadero Entonces
+		precio3 = precio2 * cantp;
+		Escribir "Pasaporte habilitado:";
+		Escribir "Edades: ",e1,", ",e2,", ",e3,", ",e4,", ",e5,", ",e6,", ",e7,", ",e8,", ",e9,", ",e10,", ";
+		Escribir "Total: $",precio3;
+	SiNo
+		Si indv = Verdadero Entonces
+			Escribir "Pasaporte no habilitado:";
+			Escribir "Edades: ",e1,", ",e2,", ",e3,", ",e4,", ",e5,", ",e6,", ",e7,", ",e8,", ",e9,", ",e10,", ";
+			Escribir "Total: $",precio1;
+		FinSi
+	FinSi
+	
+FinProceso
